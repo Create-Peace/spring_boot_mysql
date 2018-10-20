@@ -1,0 +1,44 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    name: datasource
+    druid:
+      #jdbc 配置
+      url: jdbc:mysql://10.10.8.178:3306/test_study?useUnicode=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&useAffectedRows=true # 返回受影响记录条数
+      username: test
+      password: test
+      driver-class-name: com.mysql.jdbc.Driver
+      # 初始化大小，最小，最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      # validationQuery是用来验证数据库连接的查询语句
+      validation-query: SELECT 'x'
+      # 几个test参数设置为true可以通过充分的检测移除不可用连接，并重新创建新的连接，保证应用都获取到健康的连接
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
+      #在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+      max-pool-prepared-statement-per-connection-size: 20
+      # filter
+      web-stat-filter:
+        enabled: false
+      stat-view-servlet:
+        enabled: false
+
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.example.learn_springboot.model
+  check-config-location: false
