@@ -40,5 +40,5 @@ spring:
 #mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: com.example.learn_springboot.model
+  type-aliases-package: com.huixiaoer.rest.demo.model
   check-config-location: false

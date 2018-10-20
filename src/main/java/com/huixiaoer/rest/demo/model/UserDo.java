@@ -2,10 +2,13 @@ package com.huixiaoer.rest.demo.model;
 
 import java.util.Date;
 
-public class UserDo {
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class UserDO {
     private Integer id;
     private String name;
     private String sex;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date hireDate;
     private String role;
     private String status;

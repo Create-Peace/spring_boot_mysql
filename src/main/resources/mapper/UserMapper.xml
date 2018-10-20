@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace：必须与对应的接口全类名一致  
+    id ：必须与对应接口的某个对应的方法名一致即必须要和Mapper接口中的方法同名。
+ -->
+<mapper namespace="com.huixiaoer.rest.demo.dao.UserDao">
+    <insert id="insertUser" parameterType="UserDO" keyProperty="id" useGeneratedKeys="true">
+        insert into tb_user(name, sex, hire_date, role, status) 
+        values(
+        #{name, jdbcType = VARCHAR},
+        #{sex, jdbcType = VARCHAR},
+        #{hireDate, jdbcType = TIMESTAMP},
+        #{role, jdbcType = VARCHAR},
+        #{status, jdbcType = VARCHAR}
+        )
+    </insert>
+
+    <resultMap id="UserMap" type="UserDO">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="hire_date" property="hireDate" />
+        <result column="role" property="role" />
+        <result column="sex" property="sex" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <select id="selectUserById" parameterType="Integer" resultMap="UserMap">
+        select * from tb_user where id = #{id, jdbcType = INTEGER}
+    </select>
+
+    <select  id="listUsers" resultMap="UserMap">
+        select * from tb_user
+    </select>
+
+    <update id="updateUserById" parameterType="UserDO">
+        update tb_user set role = #{role, jdbcType = VARCHAR}
+        where id  = #{id, jdbcType = INTEGER}
+    </update>
+
+
+</mapper>
